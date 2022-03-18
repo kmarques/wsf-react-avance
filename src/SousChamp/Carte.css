@@ -1,0 +1,82 @@
+
+.header{
+    background-color: white;
+    width: 100%;
+    height: 100px;
+  }
+  
+  .page{
+    
+    min-height: 100vh;
+    padding: 5px;
+    margin: 5px;
+  }
+  .retour{
+    display: flex;
+    justify-content:flex-start ;
+    height: 35px;
+  }
+  .titrepage{
+    font-family: 'K2D', sans-serif;
+    font-size: 30px;
+    display: flex;
+    justify-content:flex-start ;
+  }
+  .recherchebar{
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 25px;
+    width: 25%;
+    margin-bottom: 25px;
+  }
+  .lignesouschamp{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  }
+  .blocsouschamp{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 8px;
+    width: 260px;
+    height: 300px;
+    padding: 5px;
+    
+  }
+  .titreblocsouschamp{
+    display: flex;
+    justify-content: center;
+    
+  
+  }
+  .part1bloc{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+  .colorcomposant{
+    display: flex;
+    flex-direction: column;
+  
+  }
+  .buttonblocsouschamp{
+    background-color: #696969;
+    border: 1px solid black;
+    border-radius: 0px;
+    width: 180px;
+    height: 25px;
+    color: white;
+  }
+  .part2bloc{
+    display: flex;
+    justify-content: center;
+    height: 25px;
+  }
+  .spacing{
+    height: 20px;
+  }
+  .circlecolor{
+    margin: 8px;
+    
+  }

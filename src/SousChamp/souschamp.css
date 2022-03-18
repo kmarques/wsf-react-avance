@@ -1,0 +1,11 @@
+.souschamp {
+    display : flex;
+    justify-content: space-around;
+    margin-bottom: 5vh;
+}
+
+.textTitre {
+    margin-bottom: 10vh;
+    margin-left: 50px;
+    font-size: 35px;
+}
