@@ -9,6 +9,7 @@
 // - TodoList
 
 export default function ListContainer({ data, ItemComponent }) {
+  //const [items, setItems] = useState(data);
   return data.map((item) => <ItemComponent item={item} />);
 }
 
