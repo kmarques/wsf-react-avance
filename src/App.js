@@ -32,6 +32,39 @@ function App(props) {
         ]}
         ItemComponent={ComponentWithLink}
       />
+      <ListContainer
+        data={[
+          {
+            id: 1,
+            title: "fourchette",
+            completed: false,
+          },
+          {
+            id: 2,
+            title: "pomme",
+            completed: true,
+          },
+          {
+            id: 3,
+            title: "banane",
+            completed: false,
+          },
+          {
+            id: 4,
+            title: "orange",
+            completed: false,
+          },
+        ]}
+        ItemComponent={({ item }) => (
+          <div>
+            {item.title}
+            {item.completed ? "completed" : "not completed"}
+          </div>
+        )}
+      />
+    </div>
+  );
+}
     </div>
   );
 }
