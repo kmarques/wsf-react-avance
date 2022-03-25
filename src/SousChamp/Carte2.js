@@ -2,8 +2,11 @@ import "./Carte.css";
 import circlered from "./circlered.png";
 import circlegreen from "./circlegreen.png";
 import circleryellow from "./circleyellow.png";
+import Collapse from "../lib/Collapse";
+import { useState } from "react";
 
 function Carte(props) {
+  const [collapseOpen, setCollapseOpen] = useState(false);
   return (
     <div>
       <div className="blocsouschamp">
@@ -33,15 +36,25 @@ function Carte(props) {
 
           <div>
             <div>
-              <p>Alarmes :</p>
-              {Object.values(props.sensors).map((alarm) => (
-                <p>{alarm}°</p>
-              ))}
+              <Collapse
+                title={<p>Alarmes :</p>}
+                content={Object.values(props.sensors).map((alarm) => (
+                  <p>{alarm}°</p>
+                ))}
+              />
             </div>
           </div>
         </div>
         <div className="part2bloc">
-          <div className="buttonblocsouschamp">Voir détails</div>
+          <button onClick={() => setCollapseOpen(!collapseOpen)}>
+            {collapseOpen ? "Hide" : "Show"} Collapse
+          </button>
+          <Collapse
+            title={<div className="buttonblocsouschamp">Voir détails</div>}
+            content={"Les détails"}
+            value={collapseOpen}
+            onOpen={(value) => setCollapseOpen(value)}
+          />
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Button from "./Button";
+import Button from "./lib/Button";
 import Souschamps from "./SousChamp/SousChamps2";
 import ListContainer from "./lib/ListContainer";
 
