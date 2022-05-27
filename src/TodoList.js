@@ -1,12 +1,26 @@
 import ListContainer from "./lib/ListContainer";
 
-function TodoItem({ item, onDelete, onComplete }) {
+function TodoItem({ item, onDelete, onEdit }) {
   return (
     <div>
+      <input
+        type="checkbox"
+        checked={item.completed}
+        onChange={() => {
+          item.completed = !item.completed;
+          onEdit(item);
+        }}
+      />
+      <input
+        type="text"
+        value={item.title}
+        onChange={(e) => {
+          item.title = e.target.value;
+          onEdit(item);
+        }}
+      />
       {item.title} {item.completed && "done"}
-      <button onComplete={onComplete} onClick={() => onDelete(item)}>
-        X
-      </button>
+      <button onClick={() => onDelete(item)}>X</button>
     </div>
   );
 }
@@ -18,6 +32,7 @@ export default function TodoList() {
   ];
   function handleSubmit(addItem) {
     return (event) => {
+      event.preventDefault();
       const formData = new FormData(event.currentTarget);
       addItem({
         title: formData.get("title"),
@@ -28,16 +43,14 @@ export default function TodoList() {
   return (
     <ListContainer
       data={items}
-      editable={true}
-      ItemComponent={({ editItem, ...props }) => (
-        <TodoItem {...props} onComplete={editItem} />
-      )}
-      AddComponent={({ addItem }) => (
-        <form onSubmit={handleSubmit(addItem)}>
+      ItemComponent={TodoItem}
+      AddComponent={({ onAdd }) => (
+        <form onSubmit={handleSubmit(onAdd)}>
           <input type="text" name="title" />
           <button type="submit">Add</button>
         </form>
       )}
+      addComponentLocation={"bottom"}
     />
   );
 }

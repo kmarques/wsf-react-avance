@@ -5,19 +5,37 @@
 //// - Récupérer la liste
 // - Modifier les éléments de la liste
 
+import { useState } from "react";
+
 // Exemple d'utilisation:
 // - TodoList
 
-export default function ListContainer({ data, ItemComponent }) {
+export default function ListContainer({
+  data,
+  ItemComponent,
+  AddComponent = () => false,
+  addComponentLocation = "top",
+}) {
   const [items, setItems] = useState(data);
-  function deleteItem(item) {}
-  function editItem(item) {}
-  function addItem(values) {
-    // values => {title: "", completed: true}
+
+  function deleteItem(item) {
+    setItems(items.filter((i) => i !== item));
   }
-  return items.map((item) => (
-    <ItemComponent item={item} onDelete={deleteItem} onEdit={editItem} />
-  ));
+  function editItem(item) {
+    setItems(items.map((i) => (i === item ? { ...item } : i)));
+  }
+  function addItem(values) {
+    setItems([...items, values]);
+  }
+  return (
+    <>
+      {addComponentLocation === "top" && <AddComponent onAdd={addItem} />}
+      {items.map((item) => (
+        <ItemComponent item={item} onDelete={deleteItem} onEdit={editItem} />
+      ))}
+      {addComponentLocation === "bottom" && <AddComponent onAdd={addItem} />}
+    </>
+  );
 }
 
 // [{title: 1}, {title: 2}]
