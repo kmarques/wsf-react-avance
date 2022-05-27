@@ -12,21 +12,31 @@ function TodoItem({ item, onDelete, onComplete }) {
 }
 
 export default function TodoList() {
-  const [items, setItems] = useState([
+  const items = [
     { title: "1", completed: true },
     { title: "2", completed: false },
-  ]);
-  function deleteItem(item) {}
-  function editItem(item) {}
-  function addItem(values) {
-    //values => {title: "", completed: true}
+  ];
+  function handleSubmit(addItem) {
+    return (event) => {
+      const formData = new FormData(event.currentTarget);
+      addItem({
+        title: formData.get("title"),
+        completed: false,
+      });
+    };
   }
   return (
     <ListContainer
       data={items}
       editable={true}
-      ItemComponent={(props) => (
-        <TodoItem {...props} onDelete={deleteItem} onComplete={editItem} />
+      ItemComponent={({ editItem, ...props }) => (
+        <TodoItem {...props} onComplete={editItem} />
+      )}
+      AddComponent={({ addItem }) => (
+        <form onSubmit={handleSubmit(addItem)}>
+          <input type="text" name="title" />
+          <button type="submit">Add</button>
+        </form>
       )}
     />
   );
