@@ -1,4 +1,4 @@
-import ListContainer from "./lib/ListContainer";
+import ListContainer from "../lib/ListContainerWithReducer";
 import TodoList from "./TodoList";
 
 function ComponentWithTitle({ item }) {

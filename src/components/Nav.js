@@ -3,7 +3,7 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import NavLink from "./NavLink";
 
 export default function Nav() {
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   return (
     <nav
       style={{

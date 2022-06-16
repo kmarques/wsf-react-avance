@@ -1,24 +1,25 @@
-import ListContainer from "./lib/ListContainer";
+import ListContainer from "../lib/ListContainer";
 
 function TodoItem({ item, onDelete, onEdit }) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    for (let [key, value] of data) {
+      item[key] = value;
+    }
+    if (!data.get("completed")) {
+      item.completed = false;
+    }
+    onEdit(item);
+  };
+
   return (
     <div>
-      <input
-        type="checkbox"
-        checked={item.completed}
-        onChange={() => {
-          item.completed = !item.completed;
-          onEdit(item);
-        }}
-      />
-      <input
-        type="text"
-        value={item.title}
-        onChange={(e) => {
-          item.title = e.target.value;
-          onEdit(item);
-        }}
-      />
+      <form onSubmit={handleSubmit}>
+        <input name="completed" type="checkbox" />
+        <input type="text" name="title" />
+        <input type="submit" value="edit" />
+      </form>
       {item.title} {item.completed && "done"}
       <button onClick={() => onDelete(item)}>X</button>
     </div>

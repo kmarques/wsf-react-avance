@@ -3,7 +3,7 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import Button from "./Button";
 
 export default function ThemedButton({ inverted = false, ...props }) {
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   return (
     <Button
       {...props}
