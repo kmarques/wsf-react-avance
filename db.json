@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullname": "John Doe",
+      "subscriptionExpirationDate": "2019-12-31",
+      "apiKey": "1234567890"
+    },
+    {
+      "id": 2,
+      "fullname": "Jane Doe",
+      "subscriptionExpirationDate": "2025-12-31",
+      "apiKey": "0987654321"
+    },
+    {
+      "id": 3,
+      "fullname": "John Smith",
+      "subscriptionExpirationDate": "2019-12-31",
+      "apiKey": "1230984567"
+    }
+  ]
+}
