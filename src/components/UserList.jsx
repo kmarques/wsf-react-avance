@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Button from "./Button";
 
 export default function UserList() {
   const [users, setUsers] = useState(undefined);
@@ -39,7 +40,7 @@ export default function UserList() {
       <h1>Users list</h1>
       <form onSubmit={handleSubmit}>
         <input placeholder="apiKey" name="apiKey" />
-        <input type="submit" value="Find" />
+        <Button type="submit" value="Find" component="input" />
       </form>
       {JSON.stringify(filters)}
       <ul>
@@ -47,6 +48,7 @@ export default function UserList() {
         {filteredUsers &&
           filteredUsers.map((user) => (
             <li
+              key={user.id}
               style={{
                 textDecoration:
                   new Date(user.subscriptionExpirationDate) < new Date()

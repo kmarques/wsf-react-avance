@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 export default function Button({
   variant = "rounded",
@@ -6,13 +7,12 @@ export default function Button({
   backgroundColor = "black",
   title,
   onClick,
+  component: Component = "button",
+  ...otherProps
 }) {
+  const { theme } = useContext(ThemeContext);
   const customStyle = {
-    borderRadius: 5,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    cursor: "pointer",
+    ...theme.button,
   };
 
   useEffect(() => {
@@ -35,15 +35,15 @@ export default function Button({
   }
 
   return (
-    <div
+    <Component
       style={{
         color,
         backgroundColor,
         ...customStyle,
       }}
       onClick={onClick}
-    >
-      {title}
-    </div>
+      children={(Component !== "input" && title) || undefined}
+      {...otherProps}
+    />
   );
 }
