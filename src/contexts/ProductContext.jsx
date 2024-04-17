@@ -1,4 +1,9 @@
 import { createContext, useEffect, useState } from "react";
+import {
+  getProducts,
+  addProduct,
+  deleteProduct,
+} from "../services/productGateway";
 // import productManager from "../services/productManagerBackend";
 // import productManager from "../services/productManagerLocalStorage";
 // import productManager from "../services/productManagerGateway";
@@ -12,45 +17,29 @@ export function ProductProvider({ children }) {
 
   useEffect(() => {
     setTimeout(async () => {
-      fetch("http://localhost:3000/products")
-        .then((res) => res.json())
-        .then((data) =>
-          setState({
-            products: data,
-            isLoading: false,
-          })
-        );
-    }, 2000);
+      getProducts().then((data) =>
+        setState({
+          products: data,
+          isLoading: false,
+        })
+      );
+    }, 7000);
   }, []);
 
   const actions = {
     async addProduct(product) {
-      const resp = await fetch("http://localhost:3000/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(product),
-      });
-      const newProduct = await resp.json();
+      const newProduct = await addProduct(product);
       setState((state) => ({
         ...state,
         products: [...state.products, newProduct],
       }));
     },
     async deleteProduct(productToDelete) {
-      const resp = await fetch(
-        `http://localhost:3000/products/${productToDelete.id}`,
-        {
-          method: "DELETE",
-        }
-      );
-      if (resp.ok) {
-        setState((state) => ({
-          ...state,
-          products: state.products.filter((p) => p.id !== productToDelete.id),
-        }));
-      }
+      await deleteProduct(productToDelete);
+      setState((state) => ({
+        ...state,
+        products: state.products.filter((p) => p.id !== productToDelete.id),
+      }));
     },
   };
 

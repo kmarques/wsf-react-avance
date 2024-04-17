@@ -19,14 +19,5 @@
       "apiKey": "1230984567"
     }
   ],
-  "products": [
-    {
-      "name": "ezfrgth",
-      "description": "rzetgh",
-      "price": "14",
-      "category": "bedroom",
-      "subcategory": "clothes",
-      "id": 2
-    }
-  ]
+  "products": []
 }
