@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { ThemeProvider } from "./contexts/ThemeContext.jsx";
+import { TaskListProvider } from "./contexts/TasklistContext.jsx";
+import TaskList from "./views/TaskList.jsx";
 const theme = {
   button: {
     borderRadius: 5,
@@ -17,6 +19,8 @@ const theme = {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider defaultTheme={theme}>
-    <App />
+    <TaskListProvider>
+      <TaskList />
+    </TaskListProvider>
   </ThemeProvider>
 );

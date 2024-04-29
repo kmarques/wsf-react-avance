@@ -1,9 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import {
-  getProducts,
-  addProduct,
-  deleteProduct,
-} from "../services/productGateway";
+import productGateway from "../services/productGateway";
 // import productManager from "../services/productManagerBackend";
 // import productManager from "../services/productManagerLocalStorage";
 // import productManager from "../services/productManagerGateway";
@@ -17,7 +13,7 @@ export function ProductProvider({ children }) {
 
   useEffect(() => {
     setTimeout(async () => {
-      getProducts().then((data) =>
+      productGateway.fetch().then((data) =>
         setState({
           products: data,
           isLoading: false,
@@ -28,14 +24,14 @@ export function ProductProvider({ children }) {
 
   const actions = {
     async addProduct(product) {
-      const newProduct = await addProduct(product);
+      const newProduct = await productGateway.create(product);
       setState((state) => ({
         ...state,
         products: [...state.products, newProduct],
       }));
     },
     async deleteProduct(productToDelete) {
-      await deleteProduct(productToDelete);
+      await productGateway.delete(productToDelete);
       setState((state) => ({
         ...state,
         products: state.products.filter((p) => p.id !== productToDelete.id),
