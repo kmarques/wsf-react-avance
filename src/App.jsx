@@ -110,56 +110,33 @@ function App() {
           </div>
         )}
       />
-      <List
-        data={[
-          { id: "1", name: "pierre", dueDate: new Date().toDateString() },
-          { id: "2", name: "papier", dueDate: new Date().toDateString() },
-          { id: "3", name: "ciseaux", dueDate: new Date().toDateString() },
-        ]}
-        containerComponent={({ children, data }) => (
-          <table>
-            <thead>
-              <tr>
-                {Object.keys(data[0]).map((head) => (
-                  <th>{head}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>{children}</tbody>
-          </table>
-        )}
-        itemComponent={({ item }) => (
-          <tr>
-            {Object.values(item).map((col) => (
-              <td>{col}</td>
-            ))}
-          </tr>
-        )}
-      />
+
       <Table
         data={[
           {
-            id: "1",
+            uuid: "1",
             sport: "football",
             country: "allemagne",
             firstname: "karl",
             lastname: "Heinz Rummenigge",
           },
           {
-            id: "2",
+            uuid: "2",
             sport: "football",
             country: "italie",
             firstname: "roberto",
             lastname: "Baggio",
           },
           {
-            id: "3",
+            uuid: "3",
             sport: "tennis",
             country: "espagne",
             firstname: "rafael",
             lastname: "Nadal",
           },
         ]}
+        getRowId={(item) => item.uuid}
+        border="1px solid white"
       />
       <Modal title="Player form">
         <form

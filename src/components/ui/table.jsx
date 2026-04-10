@@ -1,15 +1,14 @@
 import List from "../list";
 
-export default function Table({ data }) {
+export default function Table({ border, ...others }) {
   return (
     <List
-      data={data}
       containerComponent={({ children, data }) => (
-        <table>
+        <table style={{ border }}>
           <thead>
             <tr>
               {Object.keys(data[0]).map((head) => (
-                <th>{head}</th>
+                <th key={head}>{head}</th>
               ))}
             </tr>
           </thead>
@@ -18,11 +17,12 @@ export default function Table({ data }) {
       )}
       itemComponent={({ item }) => (
         <tr>
-          {Object.values(item).map((col) => (
-            <td>{col}</td>
+          {Object.entries(item).map(([key, value]) => (
+            <td key={key}>{value}</td>
           ))}
         </tr>
       )}
+      {...others}
     />
   );
 }

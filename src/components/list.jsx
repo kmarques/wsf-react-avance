@@ -4,6 +4,7 @@ const DefaultItemComponent = ({ item, renderItem }) => (
 
 export default function List({
   data,
+  getRowId = (item) => item.id,
   renderItem = (val) => val,
   itemComponent: Item = DefaultItemComponent,
   containerComponent: Container = "ul",
@@ -12,9 +13,9 @@ export default function List({
     <Container data={data}>
       {data.map((item) =>
         typeof Item === "string" ? (
-          <Item>{renderItem(item)}</Item>
+          <Item key={getRowId(item)}>{renderItem(item)}</Item>
         ) : (
-          <Item item={item} renderItem={renderItem} />
+          <Item key={getRowId(item)} item={item} renderItem={renderItem} />
         ),
       )}
     </Container>
