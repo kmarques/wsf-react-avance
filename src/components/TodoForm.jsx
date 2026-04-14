@@ -8,7 +8,7 @@ export default function TodoForm({
     const form = event.currentTarget;
     const formData = new FormData(form);
     const values = Object.fromEntries(formData.entries());
-    debugger;
+
     onSubmit(values)
       .then(() => {
         form.reset();

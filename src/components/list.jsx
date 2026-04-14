@@ -50,7 +50,6 @@ export default function List({
   containerComponent: Container = "ul",
   formComponent: FormComponent,
 }) {
-  console.log(data, actions, FormComponent);
   const [addMode, setAddMode] = useState(false);
 
   const handleCreate = (values) => {

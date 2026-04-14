@@ -9,13 +9,20 @@ import Modal from "./components/ui/modal";
 import TodoList from "./components/TodoList";
 import TodoListWithGenericComponent from "./components/TodoListWithGenericComponent";
 import TodoListWithTable from "./components/TodoListWithTable";
+import Clock from "./components/Clock";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [displayClock, setDisplayClock] = useState(true);
 
   return (
     <>
       <div>
+        {displayClock && <Clock />}
+        <Button
+          onClick={() => setDisplayClock((prev) => !prev)}
+          title={displayClock ? "Hide Clock" : "Show Clock"}
+        />
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
