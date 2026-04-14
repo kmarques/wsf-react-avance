@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "./ui/button";
+import TodoForm from "./TodoForm";
 
 const defaultValues = [
   { id: "1", title: "orange" },
@@ -12,31 +13,33 @@ export default function TodoList() {
   const [displayAdd, setDisplayAdd] = useState(false);
   const [formValues, setFormValues] = useState({});
   const [title, setTitle] = useState("");
-
-  function handleSubmitJS(event) {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const values = Object.fromEntries(formData.entries());
-    event.currentTarget.reset();
-    setTitle("");
-    setTodos([values, ...todos]);
-  }
+  const [editMode, setEditMode] = useState(null);
 
   function clearList() {
     setTodos([]);
   }
 
-  function handleChange(key, value) {
-    formValues[key] = value;
-    setFormValues({
-      ...formValues,
-      [key]: value,
-    });
+  async function addTask(values) {
+    const newTodo = {
+      id: crypto.randomUUID(),
+      ...values,
+    };
+    setTodos([...todos, newTodo]);
   }
-  function handleSubmitReact(event) {
-    event.preventDefault();
-    setTodos([formValues, ...todos]);
-    setFormValues({});
+
+  function deleteTask(id) {
+    setTodos(todos.filter((t) => t.id !== id));
+  }
+
+  async function editTask(values) {
+    const id = editMode;
+    const updatedTodo = {
+      ...todos.find((t) => t.id === id),
+      ...values,
+      id,
+    };
+    setTodos(todos.map((t) => (t.id === id ? updatedTodo : t)));
+    setEditMode(null);
   }
 
   return (
@@ -44,7 +47,28 @@ export default function TodoList() {
       <Button onClick={clearList}>Clear List</Button>
       <ul>
         {todos.map((item) => (
-          <li key={item.id}>{item.title}</li>
+          <li
+            key={item.id}
+            style={{ display: "flex", gap: 4, alignItems: "center" }}
+          >
+            {editMode === item.id ? (
+              <TodoForm
+                onSubmit={editTask}
+                submitButtonLabel="Editer"
+                defaultValues={item}
+              />
+            ) : (
+              <span>{item.title}</span>
+            )}
+            <span>
+              {editMode === item.id ? (
+                <Button onClick={() => setEditMode(null)}>Cancel</Button>
+              ) : (
+                <Button onClick={() => setEditMode(item.id)}>Update</Button>
+              )}
+              <Button onClick={() => deleteTask(item.id)}>Delete</Button>
+            </span>
+          </li>
         ))}
       </ul>
       {!displayAdd && (
@@ -53,38 +77,8 @@ export default function TodoList() {
       {displayAdd && (
         <>
           <span>Form JS (plus propre, plus accessible)</span>
-          <form onSubmit={handleSubmitJS}>
-            <label htmlFor="title">Titre</label>
-            <input
-              name="title"
-              id="title"
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            {title === "Hello you" && <span>Good answer</span>}
-            <input type="submit" value="Ajouter" />
-          </form>
+          <TodoForm onSubmit={addTask} submitButtonLabel="Ajouter" />
           <Button onClick={() => setDisplayAdd(false)}>Hide Add Form</Button>
-        </>
-      )}
-      {displayAdd && (
-        <>
-          <span>Form React</span>
-          <label htmlFor="title">Titre</label>
-          <input
-            onChange={(e) => handleChange("title", e.target.value)}
-            value={formValues.title || ""}
-            id="title"
-          />
-          <input
-            value={formValues.toto || ""}
-            onChange={(e) => handleChange("toto", e.target.value)}
-          />
-          <input
-            value={formValues.tata || ""}
-            onChange={(e) => handleChange("tata", e.target.value)}
-          />
-          <Button onClick={handleSubmitReact}>Soumettre</Button>
-          <pre>{JSON.stringify(formValues)}</pre>
         </>
       )}
     </>

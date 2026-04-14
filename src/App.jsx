@@ -7,6 +7,8 @@ import List from "./components/list";
 import Table from "./components/ui/table";
 import Modal from "./components/ui/modal";
 import TodoList from "./components/TodoList";
+import TodoListWithGenericComponent from "./components/TodoListWithGenericComponent";
+import TodoListWithTable from "./components/TodoListWithTable";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -161,6 +163,14 @@ function App() {
         </form>
       </Modal>
       <TodoList />
+      <div
+        style={{ margin: 10, width: "100%", height: 6, backgroundColor: "red" }}
+      ></div>
+      <TodoListWithGenericComponent />
+      <div
+        style={{ margin: 10, width: "100%", height: 6, backgroundColor: "red" }}
+      ></div>
+      <TodoListWithTable />
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
