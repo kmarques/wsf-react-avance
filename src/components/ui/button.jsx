@@ -1,3 +1,5 @@
+import useTheme from "../../hooks/useTheme";
+
 export default function Button({
   onClick,
   title,
@@ -8,6 +10,7 @@ export default function Button({
   component: Component = "button",
   ...restProps
 }) {
+  const { getButtonTheme, mode } = useTheme();
   const innerStyle = {
     borderRadius: 10,
   };
@@ -56,10 +59,12 @@ export default function Button({
             : "brown";
   }
 
+  const themeStyle = getButtonTheme(variant, color);
+  console.log("Button theme mode:", mode);
   return (
     <Component
       onClick={onClick}
-      style={{ ...innerStyle, ...style }}
+      style={{ ...themeStyle, ...style }}
       {...restProps}
     >
       {title || children}

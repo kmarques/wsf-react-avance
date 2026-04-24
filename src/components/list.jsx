@@ -6,6 +6,7 @@ const DefaultItemComponent = ({
   renderItem,
   actions,
   formComponent: FormComponent,
+  theme,
 }) => {
   const [editMode, setEditMode] = useState(false);
 
@@ -43,6 +44,7 @@ const DefaultItemComponent = ({
 
 export default function List({
   data,
+  theme = {},
   actions = {},
   getRowId = (item) => item.id,
   renderItem = (val, actions) => val,

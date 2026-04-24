@@ -10,7 +10,7 @@ const defaultValues = [
   { id: "3", title: "raisin table" },
 ];
 
-export default function TodoListWithTable() {
+export default function TodoListWithTable({ theme }) {
   const [todos, setTodos] = useState(defaultValues);
 
   function clearList() {

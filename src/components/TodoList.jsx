@@ -8,7 +8,7 @@ const defaultValues = [
   { id: "3", title: "raisin" },
 ];
 
-export default function TodoList() {
+export default function TodoList({ theme }) {
   const [todos, setTodos] = useState(defaultValues);
   const [displayAdd, setDisplayAdd] = useState(false);
   const [formValues, setFormValues] = useState({});

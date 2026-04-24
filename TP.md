@@ -22,4 +22,4 @@ Un utilisateur (email, password) peut se connecter pour gérer le magasin
 
 *Utiliser json-server pour simuler une API REST.*   
    
-   ***Attention !!! à ne pas écrire les requêtes fetch en dur dans les composants, mais à créer des fonctions de service pour cela. Par exemple, une fonction getProducts() qui fait un fetch vers /products et retourne les produits.***
+***Attention !!! à ne pas écrire les requêtes fetch en dur dans les composants, mais à créer des fonctions de service pour cela. Par exemple, une fonction getProducts() qui fait un fetch vers /products et retourne les produits.***

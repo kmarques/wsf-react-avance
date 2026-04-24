@@ -9,5 +9,115 @@
       "id": "TlpMAeD7yB0"
     }
   ],
+  "users": [
+    {
+      "id": "1",
+      "email": "john.doe@example.com",
+      "password": "password123"
+    },
+    {
+      "id": "2",
+      "email": "jane.smith@example.com",
+      "password": "password456"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Product A",
+      "price": 19.99,
+      "description": "This is a great product.",
+      "quantity": 100
+    },
+    {
+      "id": "2",
+      "name": "Product B",
+      "price": 29.99,
+      "description": "This is another great product.",
+      "quantity": 50
+    }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "lastname": "Doe",
+      "firstname": "John",
+      "status": "pending"
+    },
+    {
+      "id": "2",
+      "lastname": "Smith",
+      "firstname": "Jane",
+      "status": "completed"
+    },
+    {
+      "lastname": "karl",
+      "firstname": "karl",
+      "status": "pending",
+      "id": "HIzX1F-asJU"
+    },
+    {
+      "lastname": "karl",
+      "firstname": "karl",
+      "status": "pending",
+      "id": "kd-kpAIPyaw"
+    },
+    {
+      "lastname": "karl",
+      "firstname": "karl",
+      "status": "pending",
+      "id": "VrRFkTbZkEQ"
+    },
+    {
+      "lastname": "dqfesrgdet",
+      "firstname": "dezfrgthy",
+      "status": "pending",
+      "id": "kAN7KXQ5VDE"
+    }
+  ],
+  "order_items": [
+    {
+      "id": "1",
+      "orderId": "1",
+      "productId": "1",
+      "quantity": 2
+    },
+    {
+      "id": "2",
+      "orderId": "1",
+      "productId": "2",
+      "quantity": 1
+    },
+    {
+      "id": "3",
+      "orderId": "2",
+      "productId": "1",
+      "quantity": 1
+    },
+    {
+      "orderId": "kd-kpAIPyaw",
+      "productId": "1",
+      "quantity": "4",
+      "id": "Guu5YPJ4QgE"
+    },
+    {
+      "orderId": "VrRFkTbZkEQ",
+      "productId": "1",
+      "quantity": "20",
+      "id": "Uba5s1QfVcA"
+    },
+    {
+      "orderId": "VrRFkTbZkEQ",
+      "productId": "2",
+      "quantity": "5",
+      "id": "GYKT6G1hSQ0"
+    },
+    {
+      "orderId": "kAN7KXQ5VDE",
+      "productId": "1",
+      "quantity": "5",
+      "id": "zIVrK5cwA6A"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

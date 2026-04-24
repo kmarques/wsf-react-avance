@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "./button";
 
 export default function Modal({
+  theme,
   defaultOpen = false,
   onClose,
   title,

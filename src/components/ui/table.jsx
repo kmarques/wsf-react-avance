@@ -1,8 +1,17 @@
 import { useState } from "react";
 import List from "../list";
 
-export default function Table({ border, ...others }) {
+export default function Table({
+  border,
+  rowComponent: RowComponent,
+  ...others
+}) {
   const [editMode, setEditMode] = useState(null);
+
+  if (!others.data || others.data.length === 0) {
+    return <div>No data</div>;
+  }
+
   return (
     <List
       containerComponent={({ children, data }) => (
@@ -17,8 +26,9 @@ export default function Table({ border, ...others }) {
           <tbody>{children}</tbody>
         </table>
       )}
-      itemComponent={({ item, actions, formComponent: FormComponent }) =>
-        console.log("######", item, actions, FormComponent) || (
+      itemComponent={
+        RowComponent ??
+        (({ item, actions, formComponent: FormComponent }) => (
           <>
             <tr>
               {Object.entries(item).map(([key, value]) => (
@@ -52,7 +62,7 @@ export default function Table({ border, ...others }) {
               </tr>
             )}
           </>
-        )
+        ))
       }
       {...others}
     />

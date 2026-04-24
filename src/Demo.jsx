@@ -1,0 +1,164 @@
+import { useState } from "react";
+import List from "./components/list";
+import TodoList from "./components/TodoList";
+import TodoListWithGenericComponent from "./components/TodoListWithGenericComponent";
+import TodoListWithTable from "./components/TodoListWithTable";
+import Button from "./components/ui/button";
+import Modal from "./components/ui/modal";
+import Table from "./components/ui/table";
+
+export default function Demo({ theme }) {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <h1>Demo</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+        <Button onClick={() => console.log("test")} title="console" />
+        <Button
+          color="primary"
+          style={{
+            borderRadius: 0,
+          }}
+          onClick={() => setCount((prev) => prev + 1)}
+          title="setCount"
+        />
+        <Button
+          className="destructive"
+          style={{
+            borderRadius: 0,
+          }}
+          onClick={() => confirm("test")}
+        >
+          confirm
+        </Button>
+        <Button
+          variant="outline"
+          color="secondary"
+          onClick={() => prompt("test")}
+          title="prompt"
+        />
+        <Button
+          className="destructive-outline"
+          onClick={() => prompt("test")}
+          title="prompt"
+        />
+        <Button
+          onClick={() => alert("test")}
+          component="img"
+          src="https://picsum.photos/50"
+        ></Button>
+        <Button
+          onClick={() => alert("test")}
+          component="a"
+          href="https://picsum.photos/50"
+          target="_blank"
+        >
+          Go to image
+        </Button>
+      </div>
+      <List
+        data={[
+          { id: "1", title: "orange" },
+          { id: "2", title: "pomme" },
+          { id: "3", title: "raisin" },
+        ]}
+        renderItem={(item) => item.title}
+      />
+      <List
+        data={[
+          { id: "1", title: "orange" },
+          { id: "2", title: "pomme" },
+          { id: "3", title: "raisin" },
+        ]}
+        renderItem={(item) => item.title}
+        itemComponent="p"
+        containerComponent="span"
+      />
+      <List
+        data={[
+          { id: "1", name: "pierre" },
+          { id: "2", name: "papier" },
+          { id: "3", name: "ciseaux" },
+        ]}
+        renderItem={(item) => item.name}
+        itemComponent={({ item, renderItem }) => (
+          <div style={{ border: "1px solid white", padding: 10 }}>
+            {renderItem(item)}
+          </div>
+        )}
+        containerComponent={({ children }) => (
+          <div
+            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}
+          >
+            {children}
+          </div>
+        )}
+      />
+
+      <Table
+        data={[
+          {
+            uuid: "1",
+            sport: "football",
+            country: "allemagne",
+            firstname: "karl",
+            lastname: "Heinz Rummenigge",
+          },
+          {
+            uuid: "2",
+            sport: "football",
+            country: "italie",
+            firstname: "roberto",
+            lastname: "Baggio",
+          },
+          {
+            uuid: "3",
+            sport: "tennis",
+            country: "espagne",
+            firstname: "rafael",
+            lastname: "Nadal",
+          },
+        ]}
+        getRowId={(item) => item.uuid}
+        border="1px solid white"
+      />
+      <Modal title="Player form">
+        <form
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 10,
+            alignItems: "start",
+          }}
+          action=""
+        >
+          <label htmlFor="sport">sport</label>
+          <input id="sport" type="text" name="sport" />
+          <label htmlFor="country">country</label>
+          <input id="country" type="text" name="country" />
+          <label htmlFor="firstname">firstname</label>
+          <input id="firstname" type="text" name="firstname" />
+          <label htmlFor="lastname">lastname</label>
+          <input id="lastname" type="text" name="lastname" />
+
+          <input id="Envoyer" type="submit" value="Envoyer" />
+        </form>
+      </Modal>
+      <TodoList />
+      <div
+        style={{ margin: 10, width: "100%", height: 6, backgroundColor: "red" }}
+      ></div>
+      <TodoListWithGenericComponent />
+      <div
+        style={{ margin: 10, width: "100%", height: 6, backgroundColor: "red" }}
+      ></div>
+      <TodoListWithTable />
+    </div>
+  );
+}

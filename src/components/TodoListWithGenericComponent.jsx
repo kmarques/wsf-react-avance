@@ -9,7 +9,7 @@ const defaultValues = [
   { id: "3", title: "raisin" },
 ];
 
-export default function TodoListWithGenericComponent() {
+export default function TodoListWithGenericComponent({ theme }) {
   const [todos, setTodos] = useState(null);
   const [filter, setFilter] = useState("");
 
